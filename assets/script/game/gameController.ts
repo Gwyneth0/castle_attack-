@@ -3,12 +3,6 @@ const { ccclass, property } = _decorator;
 
 @ccclass('gameController')
 export class gameController extends Component {
-    start() {
-
-    }
-
-    update(deltaTime: number) {
-        
-    }
+   
 }
 

@@ -11,7 +11,7 @@
     "speed": 1,
     "wrapMode": 2,
     "enableTrsBlending": false,
-    "_duration": 0.38333333333333336,
+    "_duration": 0.5833333333333334,
     "_hash": 500763545,
     "_tracks": [
       {
@@ -59,7 +59,8 @@
     "_times": [
       0,
       0.18333333333333332,
-      0.36666666666666664
+      0.36666666666666664,
+      0.5666666666666667
     ],
     "_values": [
       {
@@ -72,6 +73,10 @@
       },
       {
         "__uuid__": "92334a40-99b4-4035-9ebd-c41ee813587d@f9941",
+        "__expectedType__": "cc.SpriteFrame"
+      },
+      {
+        "__uuid__": "8b88dcb6-fdd9-4f3f-8928-b1c73cde1531@f9941",
         "__expectedType__": "cc.SpriteFrame"
       }
     ]

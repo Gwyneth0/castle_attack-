@@ -1,4 +1,4 @@
-import { _decorator, Component, EventMouse, input, Input, Node, v2, Vec3 } from 'cc';
+import { _decorator, Component, EventMouse, input, Input, Node, Root, v2, Vec3 } from 'cc';
 import { Constants } from '../data/Constants';
 const { ccclass, property } = _decorator;
 export const BLOCK_SIZE = 40;
@@ -9,8 +9,6 @@ export class Player extends Component {
     protected start(): void {
         input.on(Input.EventType.MOUSE_UP, this.onMouseUp, this);
     }
-
-    
 
     protected onMouseUp(event: EventMouse): void {
         if (event.getButton() === 0) {

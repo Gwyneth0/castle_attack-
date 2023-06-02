@@ -1,23 +1,23 @@
-import { _decorator, Component, Enum, Node } from 'cc';
+import { _decorator, Vec3 } from 'cc';
 import { Player } from '../game/Player';
 const { ccclass, property } = _decorator;
 
-enum gameEvent{
+enum GAME_EVENT {
     RESTART = 'restart',
     ADDSCORE = 'addscore',
     DYING = 'dying'
 }
 
-enum gameState {
-    READY  = 1 , 
-    PLAYING = 2 ,
-    PAUSE = 3 ,
-    OVER = 4 
+enum GAME_STATE {
+    START = 1,
+    PLAYING = 2,
+    PAUSE = 3,
+    OVER = 4
 }
 
-enum moveState {
-    MOVE_LEFT = 1 ,
-    MOVE_RIGHT = 2 
+enum MOVE_STATE {
+    MOVE_LEFT = 1,
+    MOVE_RIGHT = 2
 }
 
 export class Constants {
@@ -25,7 +25,20 @@ export class Constants {
     static MAX_SCORE = 0;
     static PLAYER_MOVE_LEFT = 20;
     static PLAYER_MOVE_RIGHT = 20;
-    static ROCKET_DOWN = 0; 
+    static ROCKET_DOWN = 0;
     static ARROW_DOWN = 0;
     static LIGHT_DOWN = 0;
+
+    static GAME_STATE = GAME_STATE;
+    static GAME_EVENT = GAME_EVENT;
+    static MOVE_STATE = MOVE_STATE;
+
+    static STARTMOVE: boolean = false;
+    static MOVESTEP: number = 0;
+    static CURMOVETIME: number = 0;
+    static MOVETIME: number = 0.3;
+    static CURMOVESPEED: number = 0;
+    static CURPOS: Vec3 = new Vec3();
+    static DELTAPOS: Vec3 = new Vec3(0, 0, 0);
+    static TARGETPOS: Vec3 = new Vec3();
 }

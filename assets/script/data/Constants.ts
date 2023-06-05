@@ -33,6 +33,7 @@ export class Constants {
     static GAME_EVENT = GAME_EVENT;
     static MOVE_STATE = MOVE_STATE;
 
+    //playermove
     static STARTMOVE: boolean = false;
     static MOVESTEP: number = 0;
     static CURMOVETIME: number = 0;
@@ -41,4 +42,6 @@ export class Constants {
     static CURPOS: Vec3 = new Vec3();
     static DELTAPOS: Vec3 = new Vec3(0, 0, 0);
     static TARGETPOS: Vec3 = new Vec3();
+    static RIGHT_BLOCK_SIZE = 80;
+    static LEFT_BLOCK_SIZE = -80;
 }

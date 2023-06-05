@@ -1,33 +1,47 @@
-import { _decorator, Component, EventMouse, input, Input, Node, Root, v2, Vec3 } from 'cc';
+import { _decorator, Component, EventKeyboard, EventMouse, input, Input, KeyCode, Vec3 } from 'cc';
 import { Constants } from '../data/Constants';
-const { ccclass, property } = _decorator;
-export const BLOCK_SIZE = 40;
+const { ccclass } = _decorator;
 
 @ccclass('Player')
 export class Player extends Component {
 
     protected start(): void {
-        input.on(Input.EventType.MOUSE_UP, this.onMouseUp, this);
+        input.on(Input.EventType.KEY_DOWN, this.gamePlay, this);
     }
 
-    protected onMouseUp(event: EventMouse): void {
-        if (event.getButton() === 0) {
-            this.moveStep(1);
-        } else if (event.getButton() === 2) {
-            this.moveStep(2);
+    protected gamePlay(event: EventKeyboard) {
+        switch (event.keyCode) {
+            case KeyCode.KEY_A:
+                this.leftStep(1);
+                break;
+            case KeyCode.KEY_D:
+                this.rightStep(1);
+                break;
         }
     }
 
-    protected moveStep(step: number): void {
+    protected rightStep(step: number): void {
         if (Constants.STARTMOVE) {
             return;
         }
         Constants.STARTMOVE = true;
         Constants.MOVESTEP = step;
         Constants.CURMOVETIME = 0;
-        Constants.CURMOVESPEED = Constants.MOVESTEP * BLOCK_SIZE / Constants.MOVESTEP;
+        Constants.CURMOVESPEED = Constants.MOVESTEP * Constants.RIGHT_BLOCK_SIZE / Constants.MOVESTEP;
         this.node.getPosition(Constants.CURPOS);
-        Vec3.add(Constants.TARGETPOS, Constants.CURPOS, new Vec3(Constants.MOVESTEP * BLOCK_SIZE, 0, 0));
+        Vec3.add(Constants.TARGETPOS, Constants.CURPOS, new Vec3(Constants.MOVESTEP * Constants.RIGHT_BLOCK_SIZE, 0, 0));
+    }
+
+    protected leftStep(step: number): void {
+        if (Constants.STARTMOVE) {
+            return;
+        }
+        Constants.STARTMOVE = true;
+        Constants.MOVESTEP = step;
+        Constants.CURMOVETIME = 0;
+        Constants.CURMOVESPEED = Constants.MOVESTEP * Constants.LEFT_BLOCK_SIZE / Constants.MOVESTEP;
+        this.node.getPosition(Constants.CURPOS);
+        Vec3.add(Constants.TARGETPOS, Constants.CURPOS, new Vec3(Constants.MOVESTEP * Constants.LEFT_BLOCK_SIZE, 0, 0));
     }
 
     protected update(deltaTime: number): void {

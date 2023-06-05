@@ -1,4 +1,4 @@
-import { _decorator, Vec3 } from 'cc';
+import { _decorator, math, Vec3 } from 'cc';
 import { Player } from '../game/Player';
 const { ccclass, property } = _decorator;
 
@@ -18,6 +18,14 @@ enum GAME_STATE {
 enum MOVE_STATE {
     MOVE_LEFT = 1,
     MOVE_RIGHT = 2
+}
+
+enum OBSTACLES {
+    LEFT,
+    RIGHT,
+    TOP,
+    CENTER_RIGHT,
+    CENTER_LEFT
 }
 
 export class Constants {
@@ -42,6 +50,9 @@ export class Constants {
     static CURPOS: Vec3 = new Vec3();
     static DELTAPOS: Vec3 = new Vec3(0, 0, 0);
     static TARGETPOS: Vec3 = new Vec3();
-    static RIGHT_BLOCK_SIZE = 80;
-    static LEFT_BLOCK_SIZE = -80;
+    static RIGHT_BLOCK_SIZE = 60;
+    static LEFT_BLOCK_SIZE = -60;
+
+    //creater obstacles
+   
 }

@@ -12,7 +12,8 @@ export class gameController extends Component {
     @property(Player)
     private player: Player;
 
-    private results: Results;
+    @property({type:Results})
+    private Results: Results;
 
     @property(Button)
     private btnPause: Button;
@@ -35,7 +36,7 @@ export class gameController extends Component {
     }
 
     protected start(): void {
-        this.playerStruck();
+        this.contactPlayer();
     }
 
     protected update(): void {
@@ -49,29 +50,30 @@ export class gameController extends Component {
         director.loadScene('menu');
     }
     //colider
-    protected onBeginContact(_selfCollider: Collider2D, _otherCollider: Collider2D, _contact: IPhysics2DContact | null): void {
-        this.player.hitSomeThing = true;
-    }
-
+    
     protected contactPlayer(): void {
         const collider = this.player.getComponent(Collider2D);
-        console.log(collider)
         if (collider) {
             collider.on(Contact2DType.BEGIN_CONTACT, this.onBeginContact, this);
         }
     }
+    
+    protected onBeginContact(_selfCollider: Collider2D, _otherCollider: Collider2D, _contact: IPhysics2DContact | null): void {
+        this.player.hitSomeThing = true;
+        this.isOver = false;
+        // console.log(this.player.hitSomeThing);
+    }
 
     protected playerStruck(): void {
-        this.contactPlayer();
         if (this.player.hitSomeThing) {
             this.gameOver();
+            director.pause();
         }
     }
 
     protected gameOver(): void {
         console.log(1);
-        this.results.showResult();
-        director.pause();
+        this.Results.showResult();
     }
 
     protected btnPauseGame(): void {

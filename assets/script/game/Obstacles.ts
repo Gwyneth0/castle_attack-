@@ -1,4 +1,4 @@
-import { _decorator, Camera, Component, find, instantiate, Prefab, Rect, Size, v3, Vec2, Vec3, view } from 'cc';
+import { _decorator, Camera, Collider2D, Component, find, instantiate, Prefab, Rect, Size, v3, Vec2, Vec3, view } from 'cc';
 import { Constants } from '../data/Constants';
 import { gameController } from './gameController';
 const { ccclass, property } = _decorator;
@@ -20,7 +20,7 @@ export class Obstacles extends Component {
 
     protected update(): void {
         this.createObstacles();
-        this.gameController.gameOver();
+        // this.gameController.gameOver();
     }
 
     protected createObstacles(): void {
@@ -41,6 +41,7 @@ export class Obstacles extends Component {
         arrow.active = true;
         const randomPosition = this.randomScreen();
         arrow.setPosition(randomPosition);
+        arrow.getComponent(Collider2D).apply();
     }
 
     private spawnLight(): void {
@@ -50,6 +51,7 @@ export class Obstacles extends Component {
 
         const randomPosition = this.randomScreen();
         light.setPosition(randomPosition);
+        light.getComponent(Collider2D).apply();
     }
 
     private spawnRocket(): void {
@@ -59,6 +61,7 @@ export class Obstacles extends Component {
 
         const randomPosition = this.randomScreen();
         rocket.setPosition(randomPosition);
+        rocket.getComponent(Collider2D).apply();
     }
 
     private randomScreen(): Vec3 {

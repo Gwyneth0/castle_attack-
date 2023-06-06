@@ -9,6 +9,9 @@ export class Results extends Component {
     @property(Node)
     public score: Node;
 
+    @property(Node)
+    public btnRestartNode: Node;
+
     @property(Button)
     public btnRestart: Button;
 
@@ -30,13 +33,13 @@ export class Results extends Component {
     public showResult() {
         this.bestScore.active = true;
         this.lbGameOver.active = true;
-        this.btnRestart.node.active = true;
+        this.btnRestartNode.active = true;
     }
 
     public hideResult(): void {
         this.bestScore.active = false;
-        this.btnRestart.node.active = false;
         this.lbGameOver.active = false;
+        this.btnRestartNode.active = false;
     }
 
 }

@@ -1,5 +1,6 @@
-import { _decorator, Component, find, instantiate, Prefab, Size, v3, Vec2, Vec3, view } from 'cc';
+import { _decorator, Camera, Component, find, instantiate, Prefab, Rect, Size, v3, Vec2, Vec3, view } from 'cc';
 import { Constants } from '../data/Constants';
+import { gameController } from './gameController';
 const { ccclass, property } = _decorator;
 
 
@@ -14,23 +15,22 @@ export class Obstacles extends Component {
 
     @property({ type: Prefab })
     private Rocket: Prefab = null;
+    
+    private gameController: gameController;
 
-    protected onLoad(): void {
-        this.spawnObstacles();
-    }
-    protected update(dt: number): void {
+    protected update(): void {
         this.createObstacles();
+        this.gameController.gameOver();
     }
 
     protected createObstacles(): void {
-        this.scheduleOnce(this.spawnObstacles, 1);
+        this.scheduleOnce(this.spawnObstacles, 0.5);
     }
 
     private spawnObstacles(): void {
         this.spawnArrow();
         this.spawnLight();
         this.spawnRocket();
-
         const randomTime: number = Math.random() * (1 - 1) + 1;
         this.scheduleOnce(this.spawnObstacles, randomTime);
     }
@@ -72,10 +72,7 @@ export class Obstacles extends Component {
 
         const randomX: number = Math.random() * (maxX + minX) - minX;
         const randomY: number = Math.random() * (maxY + minY) - minY;
-        //this.destroy();
         return v3(randomX, randomY);
-
     }
-
 }
 

@@ -41,6 +41,9 @@ export class Results extends Component {
         this.lbGameOver.active = false;
         this.btnRestartNode.active = false;
     }
-
+    
+    protected Restart(){
+        this.btnRestart
+    }
 }
 

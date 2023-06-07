@@ -12,7 +12,7 @@ enum GAME_STATE {
     START = 1,
     PLAYING = 2,
     PAUSE = 3,
-    OVER = 4
+    OVER 
 }
 
 enum MOVE_STATE {

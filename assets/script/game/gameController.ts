@@ -1,6 +1,7 @@
-import { _decorator, Button, Collider2D, Component, Contact2DType, director, game, IPhysics2DContact, Node } from 'cc';
+import { _decorator, Button, Collider2D, Component, Contact2DType, director, game, IPhysics2DContact, Node, TerrainInfo } from 'cc';
 import { Player } from './Player';
 import { Results } from './Results';
+import { Constants } from '../data/Constants';
 const { ccclass, property } = _decorator;
 
 @ccclass('gameController')
@@ -12,7 +13,7 @@ export class gameController extends Component {
     @property(Player)
     private player: Player;
 
-    @property({type:Results})
+    @property({ type: Results })
     private Results: Results;
 
     @property(Button)
@@ -30,14 +31,28 @@ export class gameController extends Component {
     hitsomething: boolean;
     isOver: boolean;
 
+    state = Constants.GAME_STATE.START;
+
     protected onLoad(): void {
-        this.isOver = true;
+        //  this.isOver = true;
         this.btnHome.node.on(Node.EventType.TOUCH_END, this.playGame);
     }
 
     protected start(): void {
         this.contactPlayer();
+        //  this.node.on(Constants.GAME_EVENT.RESTART,this.gameStart,this);
+
     }
+
+    // protected onDestroy(){
+    //     this.node.off(Constants.GAME_EVENT.RESTART, this.gameStart,this);
+    // }
+
+    // protected gameStart(): void{
+    //     this.state = Constants.GAME_STATE.PLAYING;
+    //     this.isOver = false;
+    //     this.Results.node.score = 0;
+    // }
 
     protected update(): void {
         if (!this.isOver) {
@@ -50,14 +65,14 @@ export class gameController extends Component {
         director.loadScene('menu');
     }
     //colider
-    
+
     protected contactPlayer(): void {
         const collider = this.player.getComponent(Collider2D);
         if (collider) {
             collider.on(Contact2DType.BEGIN_CONTACT, this.onBeginContact, this);
         }
     }
-    
+
     protected onBeginContact(_selfCollider: Collider2D, _otherCollider: Collider2D, _contact: IPhysics2DContact | null): void {
         this.player.hitSomeThing = true;
         this.isOver = false;
@@ -72,7 +87,6 @@ export class gameController extends Component {
     }
 
     protected gameOver(): void {
-        console.log(1);
         this.Results.showResult();
     }
 
@@ -87,6 +101,7 @@ export class gameController extends Component {
         this.btnPause.node.active = true;
         this.btnResume.node.active = false;
     }
+
 
     // protected btnOnSound(): void{
     //     director.resume();

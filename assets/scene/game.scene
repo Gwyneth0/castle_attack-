@@ -21,7 +21,7 @@
     "_active": true,
     "_components": [],
     "_prefab": {
-      "__id__": 95
+      "__id__": 96
     },
     "_lpos": {
       "__type__": "cc.Vec3",
@@ -52,7 +52,7 @@
     },
     "autoReleaseAssets": false,
     "_globals": {
-      "__id__": 96
+      "__id__": 97
     },
     "_id": "94a87c8b-a621-4a54-8092-ce43254d3fa1"
   },
@@ -80,19 +80,19 @@
         "__id__": 28
       },
       {
-        "__id__": 90
+        "__id__": 91
       }
     ],
     "_active": true,
     "_components": [
       {
-        "__id__": 92
-      },
-      {
         "__id__": 93
       },
       {
         "__id__": 94
+      },
+      {
+        "__id__": 95
       }
     ],
     "_prefab": null,
@@ -654,6 +654,9 @@
     },
     "btnSoundOn": {
       "__id__": 55
+    },
+    "audioManager": {
+      "__id__": 90
     },
     "_id": "f8vCYnE2BC+rt3O5YbC4bT"
   },
@@ -3079,7 +3082,31 @@
     "player": {
       "__id__": 13
     },
+    "audioManager": null,
     "_id": "fc/U8SVlZHT5ZfhLycCV1c"
+  },
+  {
+    "__type__": "03a7fBcV4xEALardu7WsUyz",
+    "_name": "",
+    "_objFlags": 0,
+    "node": {
+      "__id__": 91
+    },
+    "_enabled": true,
+    "__prefab": null,
+    "bgAudio": {
+      "__uuid__": "610fbcef-0b2e-4214-93e9-bec6e87ac42a",
+      "__expectedType__": "cc.AudioClip"
+    },
+    "click": {
+      "__uuid__": "b7b63050-dc3e-4900-b585-1eb675d1b662",
+      "__expectedType__": "cc.AudioClip"
+    },
+    "playerDie": {
+      "__uuid__": "e88eedd5-1963-4ca5-9d1d-2ff423bac24e",
+      "__expectedType__": "cc.AudioClip"
+    },
+    "_id": "ef/qZ5qVRA+KUUqSwbiPD0"
   },
   {
     "__type__": "cc.Node",
@@ -3092,7 +3119,10 @@
     "_active": true,
     "_components": [
       {
-        "__id__": 91
+        "__id__": 92
+      },
+      {
+        "__id__": 90
       }
     ],
     "_prefab": null,
@@ -3130,7 +3160,7 @@
     "_name": "",
     "_objFlags": 0,
     "node": {
-      "__id__": 90
+      "__id__": 91
     },
     "_enabled": true,
     "__prefab": null,
@@ -3227,22 +3257,22 @@
   {
     "__type__": "cc.SceneGlobals",
     "ambient": {
-      "__id__": 97
-    },
-    "shadows": {
       "__id__": 98
     },
-    "_skybox": {
+    "shadows": {
       "__id__": 99
     },
-    "fog": {
+    "_skybox": {
       "__id__": 100
     },
-    "octree": {
+    "fog": {
       "__id__": 101
     },
-    "lightProbeInfo": {
+    "octree": {
       "__id__": 102
+    },
+    "lightProbeInfo": {
+      "__id__": 103
     },
     "bakedWithStationaryMainLight": false,
     "bakedWithHighpLightmap": false

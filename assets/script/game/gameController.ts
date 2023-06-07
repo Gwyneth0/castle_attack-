@@ -2,6 +2,7 @@ import { _decorator, Button, Collider2D, Component, Contact2DType, director, gam
 import { Player } from './Player';
 import { Results } from './Results';
 import { Constants } from '../data/Constants';
+import { audioManager } from './audioManager';
 const { ccclass, property } = _decorator;
 
 @ccclass('gameController')
@@ -28,6 +29,10 @@ export class gameController extends Component {
     @property(Button)
     protected btnSoundOn: Button;
 
+    @property(audioManager)
+    audioManager: audioManager = null!;
+
+
     hitsomething: boolean;
     isOver: boolean;
 
@@ -40,6 +45,7 @@ export class gameController extends Component {
 
     protected start(): void {
         this.contactPlayer();
+   //     this.audioManager.playSound();
         //  this.node.on(Constants.GAME_EVENT.RESTART,this.gameStart,this);
 
     }
@@ -81,7 +87,8 @@ export class gameController extends Component {
 
     protected playerStruck(): void {
         if (this.player.hitSomeThing) {
-            this.gameOver();
+            // this.gameOver();
+            Constants.GAME_STATE.OVER,this.gameOver();
             director.pause();
         }
     }

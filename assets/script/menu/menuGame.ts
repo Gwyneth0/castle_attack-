@@ -8,7 +8,7 @@ export class menugame extends Component {
     private btnPlay: Button;
 
     protected onLoad(): void {
-        this.btnPlay.node.on(Node.EventType.TOUCH_END, this.playGame)
+        this.btnPlay.node.on(Node.EventType.TOUCH_END, this.playGame);
     }
 
     protected playGame(): void {

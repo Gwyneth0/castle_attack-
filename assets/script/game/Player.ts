@@ -1,9 +1,11 @@
 import { _decorator, Component, EventKeyboard, EventMouse, input, Input, KeyCode, Vec3 } from 'cc';
 import { Constants } from '../data/Constants';
-const { ccclass } = _decorator;
+const { ccclass, property } = _decorator;
 
 @ccclass('Player')
 export class Player extends Component {
+
+    private player: Player;
 
     private hitSomeThing: boolean;
     public get HitSomeThing(): boolean {
@@ -20,10 +22,14 @@ export class Player extends Component {
     protected gamePlay(event: EventKeyboard) {
         switch (event.keyCode) {
             case KeyCode.KEY_A:
+                console.log(this.node.scale);
+               this.node.scale = new Vec3(-1, 1, 0);
                 this.leftStep(1);
                 break;
             case KeyCode.KEY_D:
-                this.rightStep(1);
+                console.log(this.node.scale);
+               this.node.scale = new Vec3(1, 1, 0);
+                this.rightStep(1);  
                 break;
         }
     }

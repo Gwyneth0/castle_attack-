@@ -29,6 +29,9 @@ export class gameController extends Component {
     @property(Button)
     private btnSoundOn: Button;
 
+    @property(Button)
+    private btnRestart: Button;
+
     @property(audioManager)
     audioManager: audioManager = null!;
 
@@ -51,10 +54,9 @@ export class gameController extends Component {
         this.state = value;
     }
 
-    private AudioSource : AudioSource;
-
     protected onLoad(): void {
         this.btnHome.node.on(Node.EventType.TOUCH_END, this.playGame);
+        this.btnRestart.node.on(Node.EventType.TOUCH_END, this.restart);
     }
 
     protected start(): void {
@@ -77,10 +79,14 @@ export class gameController extends Component {
         }
     }
 
+    protected restart(){
+        director.loadScene('menu');
+    }
+
     // load scene
     protected playGame(): void {
         director.loadScene('menu');
-        director.resume();
+        // director.resume();
     }
     //colider
 
@@ -122,7 +128,6 @@ export class gameController extends Component {
         this.btnResume.node.active = false;
         this.audioManager.soundClickBtn();
     }
-
 
     protected btnOnSound(): void{
       this.audioManager.onAudio();

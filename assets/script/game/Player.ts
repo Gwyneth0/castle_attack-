@@ -5,7 +5,13 @@ const { ccclass } = _decorator;
 @ccclass('Player')
 export class Player extends Component {
 
-    public hitSomeThing: boolean;
+    private hitSomeThing: boolean;
+    public get HitSomeThing(): boolean {
+        return this.hitSomeThing;
+    }
+    public set HitSomeThing(value: boolean) {
+        this.hitSomeThing = value;
+    }
 
     protected start(): void {
         input.on(Input.EventType.KEY_DOWN, this.gamePlay, this);

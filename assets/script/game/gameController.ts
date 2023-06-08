@@ -1,4 +1,4 @@
-import { _decorator, Button, Collider2D, Component, Contact2DType, director, game, IPhysics2DContact, Node, TerrainInfo } from 'cc';
+import { _decorator, AudioSource, Button, Collider2D, Component, Contact2DType, director, game, IPhysics2DContact, Node, TerrainInfo } from 'cc';
 import { Player } from './Player';
 import { Results } from './Results';
 import { Constants } from '../data/Constants';
@@ -24,30 +24,41 @@ export class gameController extends Component {
     private btnResume: Button;
 
     @property(Button)
-    protected btnSoundOff: Button;
+    private btnSoundOff: Button;
 
     @property(Button)
-    protected btnSoundOn: Button;
+    private btnSoundOn: Button;
 
     @property(audioManager)
     audioManager: audioManager = null!;
 
+    @property(Node)
+    private obstacles: Node;
+  
+    private isOver: boolean;
+    public get IsOver(): boolean {
+        return this.isOver;
+    }
+    public set IsOver(value: boolean) {
+        this.isOver = value;
+    }
 
-    hitsomething: boolean;
-    isOver: boolean;
+    private state = Constants.GAME_STATE.START;
+    public get State() {
+        return this.state;
+    }
+    public set State(value) {
+        this.state = value;
+    }
 
-    state = Constants.GAME_STATE.START;
+    private AudioSource : AudioSource;
 
     protected onLoad(): void {
-        //  this.isOver = true;
         this.btnHome.node.on(Node.EventType.TOUCH_END, this.playGame);
     }
 
     protected start(): void {
         this.contactPlayer();
-   //     this.audioManager.playSound();
-        //  this.node.on(Constants.GAME_EVENT.RESTART,this.gameStart,this);
-
     }
 
     // protected onDestroy(){
@@ -69,6 +80,7 @@ export class gameController extends Component {
     // load scene
     protected playGame(): void {
         director.loadScene('menu');
+        director.resume();
     }
     //colider
 
@@ -80,14 +92,12 @@ export class gameController extends Component {
     }
 
     protected onBeginContact(_selfCollider: Collider2D, _otherCollider: Collider2D, _contact: IPhysics2DContact | null): void {
-        this.player.hitSomeThing = true;
+        this.player.HitSomeThing = true;
         this.isOver = false;
-        // console.log(this.player.hitSomeThing);
     }
 
     protected playerStruck(): void {
-        if (this.player.hitSomeThing) {
-            // this.gameOver();
+        if (this.player.HitSomeThing) {
             Constants.GAME_STATE.OVER,this.gameOver();
             director.pause();
         }
@@ -95,31 +105,37 @@ export class gameController extends Component {
 
     protected gameOver(): void {
         this.Results.showResult();
+        this.audioManager.soundPlayerDie();
+        this.audioManager.offAudio();
     }
 
     protected btnPauseGame(): void {
         director.pause();
         this.btnPause.node.active = false;
         this.btnResume.node.active = true;
+        this.audioManager.soundClickBtn();
     }
 
     protected btnResumeGame(): void {
         director.resume();
         this.btnPause.node.active = true;
         this.btnResume.node.active = false;
+        this.audioManager.soundClickBtn();
     }
 
 
-    // protected btnOnSound(): void{
-    //     director.resume();
-    //     this.btnSoundOn.node.active = true;
-    //     this.btnSoundOff.node.active = false;
-    // }
+    protected btnOnSound(): void{
+      this.audioManager.onAudio();
+        this.btnSoundOn.node.active = false;
+        this.btnSoundOff.node.active = true;
+        this.audioManager.soundClickBtn();
+    }
 
-    // protected btnOffSound(): void{
-    //     director.pause();
-    //     this.btnSoundOff.node.active = true;
-    //     this.btnSoundOn.node.active = false;
-    // }
+    protected btnOffSound(): void{
+        this.audioManager.offAudio();
+        this.btnSoundOn.node.active = true;
+        this.btnSoundOff.node.active = false; 
+        this.audioManager.soundClickBtn();
+    }
 }
 

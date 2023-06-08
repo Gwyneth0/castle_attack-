@@ -5,27 +5,18 @@ const { ccclass, property } = _decorator;
 export class audioManager extends Component {
 
     @property(AudioClip)
-    private bgAudio: AudioClip = null;
-
-    @property(AudioClip)
     private click: AudioClip = null;
 
     @property(AudioClip)
     private playerDie: AudioClip = null;
 
+    // @property(AudioClip)
+    // private soundObs: AudioClip = null;
+
     private audioSource: AudioSource;
 
     protected start(): void {
         this.audioSource = this.getComponent(AudioSource);
-    }
-
-    public playSound(play = true){
-        if(!play){
-            this.audioSource.stop();
-            return;
-        }
-        this.audioSource.clip = this.bgAudio;
-        this.audioSource.play();
     }
 
     public soundClickBtn(){
@@ -36,8 +27,15 @@ export class audioManager extends Component {
         this.audioSource.playOneShot(this.playerDie);
     }
 
-    // public soundObstacles(){
-
+    // public soundObstracles(){
+    //     this.audioSource.playOneShot(this.soundObs);
     // }
+    public offAudio(){
+        this.audioSource.volume = 0;
+    }
+
+    public onAudio(){
+        this.audioSource.volume = 1;
+    }
 }
 

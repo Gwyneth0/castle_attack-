@@ -160,7 +160,7 @@
       "x": 0,
       "y": 0
     },
-    "_angularVelocity": 0,
+    "_angularVelocity": 1000,
     "_fixedRotation": true,
     "_id": ""
   },

@@ -3,6 +3,10 @@ const { ccclass, property } = _decorator;
 
 @ccclass('Results')
 export class Results extends Component {
+
+    // @property(Label)
+    // private lbBestScore: Label;
+
     @property(Label)
     private bestScore: Label;
 
@@ -66,6 +70,9 @@ export class Results extends Component {
     @property(Button)
     public btnOnSound: Button;
 
+    @property(Node)
+    private nodeShowResult: Node;
+
     private maxScore: number = 0;
     private currentScore: number = 0;
 
@@ -79,14 +86,19 @@ export class Results extends Component {
             this.maxScore = parseInt(storedMaxScore);
         }
         this.bestScore.string = String(this.maxScore);
+
+        this.nodeShowResult.active = false;
     }
 
     public showResult() {
+        //console.log(this.maxScore)
         this.maxScore = Math.max(this.maxScore, this.currentScore);
         this.bestScore.string = this.maxScore.toString();
-        this.bestScore.node.active = true;
-        this.lbGameOver.active = true;
-        this.btnRestartNode.active = true;
+        this.nodeShowResult.active = true;
+        //  this.lbBestScore.node.active = true;
+        // this.bestScore.node.active = true;
+        // this.lbGameOver.active = true;
+        // this.btnRestartNode.active = true;
     }
 
     public hideResult(): void {
@@ -98,11 +110,11 @@ export class Results extends Component {
     protected updateScore(num: number): void {
         this.currentScore = num;
         this.score.string = this.currentScore.toString();
-        // if (this.currentScore > this.maxScore) {
-        //     this.maxScore = this.currentScore;
-        //     localStorage.setItem('maxScore', String(this.maxScore));
-        //     this.BestScore.string = String(this.maxScore);
-        // }
+        if (this.currentScore > this.maxScore) {
+            this.maxScore = this.currentScore;
+            localStorage.setItem('maxScore', String(this.maxScore));
+            this.bestScore.string = String(this.maxScore);
+        }
     }
 
     public addScore() {

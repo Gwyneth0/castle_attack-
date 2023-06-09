@@ -37,7 +37,7 @@ export class gameController extends Component {
 
     @property(Node)
     private obstacles: Node;
-  
+
     private isOver: boolean;
     public get IsOver(): boolean {
         return this.isOver;
@@ -65,17 +65,13 @@ export class gameController extends Component {
         director.resume();
     }
 
-    // protected onDestroy(){
-    //     this.node.off(Constants.GAME_EVENT.RESTART, this.gameStart,this);
-    // }
-
     protected update(): void {
         if (!this.isOver) {
             this.playerStruck();
         }
     }
 
-    protected restart(){
+    protected restart() {
         director.loadScene('game');
     }
 
@@ -99,7 +95,7 @@ export class gameController extends Component {
 
     protected playerStruck(): void {
         if (this.player.HitSomeThing) {
-            Constants.GAME_STATE.OVER,this.gameOver();
+            Constants.GAME_STATE.OVER, this.gameOver();
             director.pause();
         }
     }
@@ -124,17 +120,17 @@ export class gameController extends Component {
         this.audioManager.soundClickBtn();
     }
 
-    protected btnOnSound(): void{
-      this.audioManager.onAudio();
+    protected btnOnSound(): void {
+        this.audioManager.onAudio();
         this.btnSoundOn.node.active = false;
         this.btnSoundOff.node.active = true;
         this.audioManager.soundClickBtn();
     }
 
-    protected btnOffSound(): void{
+    protected btnOffSound(): void {
         this.audioManager.offAudio();
         this.btnSoundOn.node.active = true;
-        this.btnSoundOff.node.active = false; 
+        this.btnSoundOff.node.active = false;
         this.audioManager.soundClickBtn();
     }
 }

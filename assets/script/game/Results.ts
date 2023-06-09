@@ -1,25 +1,13 @@
-import { _decorator, Button, Component, Node } from 'cc';
+import { _decorator, Button, Component, Label, Node } from 'cc';
 const { ccclass, property } = _decorator;
 
 @ccclass('Results')
 export class Results extends Component {
-    @property(Node)
-    private bestScore: Node;
-    public get BestScore(): Node {
-        return this.bestScore;
-    }
-    public set BestScore(value: Node) {
-        this.bestScore = value;
-    }
+    @property(Label)
+    private bestScore: Label;
 
-    @property(Node)
-    private score: Node;
-    public get Score(): Node {
-        return this.score;
-    }
-    public set Score(value: Node) {
-        this.score = value;
-    }
+    @property(Label)
+    private score: Label;
 
     @property(Node)
     private btnRestartNode: Node;
@@ -78,20 +66,53 @@ export class Results extends Component {
     @property(Button)
     public btnOnSound: Button;
 
+    private maxScore: number = 0;
+    private currentScore: number = 0;
+
+    protected start(): void {
+
+    }
+
+    protected onLoad(): void {
+        const storedMaxScore = localStorage.getItem('maxScore');
+        if (storedMaxScore) {
+            this.maxScore = parseInt(storedMaxScore);
+        }
+        this.bestScore.string = String(this.maxScore);
+    }
+
     public showResult() {
-        this.bestScore.active = true;
+        this.maxScore = Math.max(this.maxScore, this.currentScore);
+        this.bestScore.string = this.maxScore.toString();
+        this.bestScore.node.active = true;
         this.lbGameOver.active = true;
         this.btnRestartNode.active = true;
     }
 
     public hideResult(): void {
-        this.bestScore.active = false;
+        this.bestScore.node.active = false;
         this.lbGameOver.active = false;
         this.btnRestartNode.active = false;
     }
-    
-    protected Restart(){
-        this.btnRestart
+
+    protected updateScore(num: number): void {
+        this.currentScore = num;
+        this.score.string = this.currentScore.toString();
+        // if (this.currentScore > this.maxScore) {
+        //     this.maxScore = this.currentScore;
+        //     localStorage.setItem('maxScore', String(this.maxScore));
+        //     this.BestScore.string = String(this.maxScore);
+        // }
+    }
+
+    public addScore() {
+        this.updateScore(this.currentScore + 1);
+    }
+
+    protected resetScore() {
+        this.updateScore(0);
+        this.hideResult();
+        this.score.string = this.currentScore.toString();
     }
 }
 

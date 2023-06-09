@@ -5,8 +5,6 @@ const { ccclass, property } = _decorator;
 @ccclass('Player')
 export class Player extends Component {
 
-    private player: Player;
-
     private hitSomeThing: boolean;
     public get HitSomeThing(): boolean {
         return this.hitSomeThing;

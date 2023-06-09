@@ -55,22 +55,18 @@ export class gameController extends Component {
     }
 
     protected onLoad(): void {
+        director.resume();
         this.btnHome.node.on(Node.EventType.TOUCH_END, this.playGame);
         this.btnRestart.node.on(Node.EventType.TOUCH_END, this.restart);
     }
 
     protected start(): void {
         this.contactPlayer();
+        director.resume();
     }
 
     // protected onDestroy(){
     //     this.node.off(Constants.GAME_EVENT.RESTART, this.gameStart,this);
-    // }
-
-    // protected gameStart(): void{
-    //     this.state = Constants.GAME_STATE.PLAYING;
-    //     this.isOver = false;
-    //     this.Results.node.score = 0;
     // }
 
     protected update(): void {
@@ -80,13 +76,12 @@ export class gameController extends Component {
     }
 
     protected restart(){
-        director.loadScene('menu');
+        director.loadScene('game');
     }
 
     // load scene
     protected playGame(): void {
         director.loadScene('menu');
-        // director.resume();
     }
     //colider
 

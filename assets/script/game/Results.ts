@@ -4,9 +4,6 @@ const { ccclass, property } = _decorator;
 @ccclass('Results')
 export class Results extends Component {
 
-    // @property(Label)
-    // private lbBestScore: Label;
-
     @property(Label)
     private bestScore: Label;
 
@@ -91,14 +88,9 @@ export class Results extends Component {
     }
 
     public showResult() {
-        //console.log(this.maxScore)
         this.maxScore = Math.max(this.maxScore, this.currentScore);
         this.bestScore.string = this.maxScore.toString();
         this.nodeShowResult.active = true;
-        //  this.lbBestScore.node.active = true;
-        // this.bestScore.node.active = true;
-        // this.lbGameOver.active = true;
-        // this.btnRestartNode.active = true;
     }
 
     public hideResult(): void {

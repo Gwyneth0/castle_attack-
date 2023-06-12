@@ -38,7 +38,7 @@
     "_lpos": {
       "__type__": "cc.Vec3",
       "x": 56.205,
-      "y": 471.674,
+      "y": 466.511,
       "z": 0
     },
     "_lrot": {
@@ -187,13 +187,13 @@
     "_restitution": 0,
     "_offset": {
       "__type__": "cc.Vec2",
-      "x": 0,
-      "y": 0
+      "x": -1.4,
+      "y": 3
     },
     "_size": {
       "__type__": "cc.Size",
-      "width": 24.8,
-      "height": 42.4
+      "width": 31.2,
+      "height": 41.1
     },
     "_id": ""
   },
@@ -210,7 +210,6 @@
       "__id__": 0
     },
     "fileId": "93kVKxhmNEbZbNz8gWcODA",
-    "instance": null,
-    "targetOverrides": null
+    "instance": null
   }
 ]

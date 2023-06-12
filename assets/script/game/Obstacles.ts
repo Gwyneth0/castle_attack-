@@ -2,7 +2,6 @@ import { _decorator, Camera, Collider2D, Component, find, instantiate, Prefab, R
 import { Results } from './Results';
 const { ccclass, property } = _decorator;
 
-
 @ccclass('Obstacles')
 export class Obstacles extends Component {
 

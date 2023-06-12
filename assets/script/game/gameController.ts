@@ -75,10 +75,9 @@ export class gameController extends Component {
         director.loadScene('game');
     }
 
-
     // load scene
     protected playGame(): void {
-        director.loadScene('game');
+        director.loadScene('menu');
     }
     //colider
 

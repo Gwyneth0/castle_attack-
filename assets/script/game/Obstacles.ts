@@ -1,6 +1,4 @@
 import { _decorator, Camera, Collider2D, Component, find, instantiate, Prefab, Rect, Size, v3, Vec2, Vec3, view, Node } from 'cc';
-import { Constants } from '../data/Constants';
-import { gameController } from './gameController';
 import { Results } from './Results';
 const { ccclass, property } = _decorator;
 
@@ -28,7 +26,7 @@ export class Obstacles extends Component {
     }
 
     protected createObstacles(): void {
-        this.scheduleOnce(this.spawnObstacles, 0.5);    
+        this.scheduleOnce(this.spawnObstacles, 0.5);
     }
 
     private spawnObstacles(): void {

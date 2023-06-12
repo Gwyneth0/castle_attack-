@@ -14,20 +14,19 @@ export class Player extends Component {
     }
 
     protected start(): void {
+        input.on(Input.EventType.KEY_PRESSING, this.gamePlay, this);
         input.on(Input.EventType.KEY_DOWN, this.gamePlay, this);
     }
 
     protected gamePlay(event: EventKeyboard) {
         switch (event.keyCode) {
             case KeyCode.KEY_A:
-                console.log(this.node.scale);
-               this.node.scale = new Vec3(-1, 1, 0);
+                this.node.scale = new Vec3(-1, 1, 0);
                 this.leftStep(1);
                 break;
             case KeyCode.KEY_D:
-                console.log(this.node.scale);
-               this.node.scale = new Vec3(1, 1, 0);
-                this.rightStep(1);  
+                this.node.scale = new Vec3(1, 1, 0);
+                this.rightStep(1);
                 break;
         }
     }

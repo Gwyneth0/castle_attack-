@@ -10,9 +10,6 @@ export class audioManager extends Component {
     @property(AudioClip)
     private playerDie: AudioClip = null;
 
-    // @property(AudioClip)
-    // private soundObs: AudioClip = null;
-
     private audioSource: AudioSource;
 
     protected start(): void {
@@ -27,9 +24,6 @@ export class audioManager extends Component {
         this.audioSource.playOneShot(this.playerDie);
     }
 
-    // public soundObstracles(){
-    //     this.audioSource.playOneShot(this.soundObs);
-    // }
     public offAudio(){
         this.audioSource.volume = 0;
     }

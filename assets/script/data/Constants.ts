@@ -31,8 +31,8 @@ enum OBSTACLES {
 export class Constants {
     static Player: Player;
     static MAX_SCORE = 0;
-    static PLAYER_MOVE_LEFT = 20;
-    static PLAYER_MOVE_RIGHT = 20;
+    static PLAYER_MOVE_LEFT = 100;
+    static PLAYER_MOVE_RIGHT = 100;
     static ROCKET_DOWN = 0;
     static ARROW_DOWN = 0;
     static LIGHT_DOWN = 0;
@@ -45,13 +45,13 @@ export class Constants {
     static STARTMOVE: boolean = false;
     static MOVESTEP: number = 0;
     static CURMOVETIME: number = 0;
-    static MOVETIME: number = 0.3;
+    static MOVETIME: number = 0;
     static CURMOVESPEED: number = 0;
     static CURPOS: Vec3 = new Vec3();
     static DELTAPOS: Vec3 = new Vec3(0, 0, 0);
     static TARGETPOS: Vec3 = new Vec3();
-    static RIGHT_BLOCK_SIZE = 60;
-    static LEFT_BLOCK_SIZE = -60;
+    static RIGHT_BLOCK_SIZE = 10;
+    static LEFT_BLOCK_SIZE = -10;
 
     //creater obstacles
    
